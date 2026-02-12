@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<title> Final resume </title>
+
+<!-- PDF.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.9.359/pdf.min.js"></script>
+<!-- DOCX extractor -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.4.14/mammoth.browser.min.js"></script>
+<!-- Tesseract OCR -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tesseract.js/2.1.4/tesseract.min.js"></script>
+
+<!-- CSS File -->
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<header>
+
+  <nav role="banner">
+
+  <div class="nav-left">
+    <a class="brand" href="#">
+      <svg width="40" height="40" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <rect x="6" y="8" width="28" height="32" rx="3" fill="#eafaf1"/>
+        <path d="M34 12v8l6 0" stroke="#cfeee0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        <circle cx="30" cy="30" r="6" fill="#19c37d"/>
+        <circle cx="30" cy="26" r="1.4" fill="#ffffff"/>
+        <circle cx="26" cy="30" r="1.4" fill="#ffffff"/>
+        <path d="M30 24v-4" stroke="#19c37d" stroke-width="1.6" stroke-linecap="round"/>
+      </svg>
+
+      <div style="display:flex;flex-direction:column;line-height:1;">
+        <span class="brand-name">Resume Analyzer</span>
+        <span class="brand-sub">Smart resume screening</span>
+      </div>
+    </a>
+  </div>
+
+  <div class="nav-right">
+
+    <button id="signin">Sign Up</button>
+    <button id="login">Login</button>
+
+  </div>
+
+  </nav>
+
+</header>
+
+<main>
+
+  <!-- Section 1 -->
+  <section>
+
+    <div class="resume-checker-text">
+    <h1>Is your resume good enough?</h1>
+    <p>A free, fast resume checker that performs crucial checks to make sure your resume stands out and gets you interview callbacks.</p>
+    </div>
+
+  </section>
+
+  <!-- Section 2 PDF Upload  -->
+  <section class="section">
+  <h2>Upload Your Resume</h2> 
+  <p>Drop your resume here or choose a file. <br>
+    PDF & DOCX only. Max <strong> 2MB </strong> file size.</p>
+  <p>Supported Formats: <strong>Any file (PDF, DOCX, JPG, PNG)</strong></p>
+
+  <div class="upload-box">
+    <label for="resumeFile" class="custom-upload-btn">Choose File</label>
+
+    <!-- accept removed so any file is allowed -->
+    <input id="resumeFile" type="file">
+
+    <div id="fileName"></div>
+  </div>
+
+  </section>
+
+  <!-- Section 3 Loading / Circular Progress -->
+  <section>
+  <div class="section">
+
+    <div id="loadingBox" class="loading-circle">
+    <svg class="progress-ring" width="120" height="120">
+      <circle class="progress-ring__circle" stroke="lime" stroke-width="10" fill="transparent" r="50" cx="60" cy="60"/>
+    </svg>
+    <div id="progressText" class="progress-text">0%</div>
+    </div>
+
+    <!-- Skills Result -->
+    <div>
+    <h3>Extracted Skills:</h3>
+    <p id="results"></p>
+    </div>
+    
+  </div>
+  </section>
+
+  <!-- Section 4 Analyzer with Suggestions  -->
+  <section class="flex-container for-color">
+
+    <!-- Analyzer -->
+  <div class="section">
+    
+    <div class="flex-box">
+    <h1>Job Description Analyzer</h1>
+    <div class="input-section">
+      <label for="jobDesc"><h3>Paste Job Description:</h3></label>
+      <textarea  id="jobDesc" rows="6" placeholder="Enter job description here..."></textarea>
+      <button id="analyze" class="custom-upload-btn">Analyze Job Match</button>
+    </div>
+
+    <div class="results-section">
+    <h2>Job Match Results:</h2>
+    <p id="jobMatchResults">Paste a job description and click Analyze</p>
+
+      <div class="score-card section">
+      <h3>Resume Score</h3>
+      <svg class="gauge" width="160" height="100">
+      <path d="M10 90 A70 70 0 0 1 150 90" fill="none" stroke="#e5e5e5" stroke-width="12" />
+      <path id="gaugeFill" d="M10 90 A70 70 0 0 1 150 90" fill="none" 
+        stroke="#19c37d" stroke-width="12" stroke-dasharray="220" 
+        stroke-dashoffset="220" stroke-linecap="round" />
+      </svg>
+      <div class="score-value" id="scoreValue">0/100</div>
+      </div>
+
+    </div>
+    </div>
+
+  </div>
+  
+
+  <!-- Suggestions -->
+  <div class="section">
+
+    <div class="flex-box">
+      <div class="suggestion-section" id="SuggestionBox">
+      <h2>Suggestions</h2>
+
+      <div class="suggestion-block" id="requiredSkills">
+        <h3>Required Skills</h3>
+        <p>—</p>
+      </div>
+
+      <div class="suggestion-block" id="missingSkills">
+        <h3>Missing Skills</h3>
+        <p>—</p>
+      </div>
+
+      <div class="suggestion-block" id="strengths">
+        <h3>Strengths</h3>
+        <p>—</p>
+      </div>
+
+      <div class="suggestion-block" id="improvementSuggestions">
+        <h3>Improvement Suggestions</h3>
+        <p >—</p>
+      </div>
+
+      </div>
+    </div>
+  </div>
+  
+  </section>
+
+</main>
+
+<script src="script.js"></script>
+
+</body>
+
+
